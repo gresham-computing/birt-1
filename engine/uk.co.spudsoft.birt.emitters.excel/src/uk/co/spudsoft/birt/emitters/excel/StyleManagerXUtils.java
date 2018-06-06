@@ -33,6 +33,7 @@ import org.eclipse.birt.report.engine.css.engine.StyleConstants;
 import org.eclipse.birt.report.engine.css.engine.value.css.CSSConstants;
 import org.eclipse.birt.report.engine.ir.DimensionType;
 import org.eclipse.birt.report.model.api.util.ColorUtil;
+import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTColor;
 import org.w3c.dom.css.CSSValue;
 
 import uk.co.spudsoft.birt.emitters.excel.framework.Logger;
@@ -167,7 +168,9 @@ public class StyleManagerXUtils extends StyleManagerUtils {
 		}
 		byte[] rgbByte = { (byte)-1, (byte)rgbInt[0], (byte)rgbInt[1], (byte)rgbInt[2] };
 		// System.out.println( "The X colour for " + colour + " is [ " + rgbByte[0] + "," + rgbByte[1] + "," + rgbByte[2] + "," + rgbByte[3] + "]" );
-		XSSFColor result = new XSSFColor( rgbByte );
+		CTColor ctColor = CTColor.Factory.newInstance();
+        ctColor.setRgb(rgbByte);
+		XSSFColor result = new XSSFColor( ctColor );
 		return result;		
 	}
 
@@ -213,7 +216,7 @@ public class StyleManagerXUtils extends StyleManagerUtils {
 		int bgRgb[] = parseColour( bgColour == null ? null : bgColour.getCssText(), "white" );
 
 		XSSFColor colour = ((XSSFFont)font).getXSSFColor();
-		int fgRgb[] = rgbOnly( colour.getARgb() );
+		int fgRgb[] = rgbOnly( colour.getARGB() );
 		if( ( fgRgb[0] == 255 ) && ( fgRgb[1] == 255 ) && ( fgRgb[2] == 255 ) ) {
 			fgRgb[0]=fgRgb[1]=fgRgb[2]=0;
 		} else if( ( fgRgb[0] == 0 ) && ( fgRgb[1] == 0 ) && ( fgRgb[2] == 0 ) ) {

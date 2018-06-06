@@ -13,7 +13,10 @@
 
 package uk.co.spudsoft.birt.emitters.excel;
 
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.hssf.util.PaneInformation;
 import org.apache.poi.ss.usermodel.AutoFilter;
@@ -26,11 +29,13 @@ import org.apache.poi.ss.usermodel.DataValidationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.Footer;
 import org.apache.poi.ss.usermodel.Header;
+import org.apache.poi.ss.usermodel.Hyperlink;
 import org.apache.poi.ss.usermodel.PrintSetup;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.SheetConditionalFormatting;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellAddress;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 public class FilteredSheet implements Sheet {
@@ -371,7 +376,7 @@ public class FilteredSheet implements Sheet {
 
 
 	public void setZoom(int numerator, int denominator) {
-		sheet.setZoom(numerator, denominator);
+		sheet.setZoom(numerator);
 	}
 
 
@@ -418,7 +423,7 @@ public class FilteredSheet implements Sheet {
 	}
 
 
-	public PaneInformation getPaneInformation() {
+	public org.apache.poi.ss.util.PaneInformation getPaneInformation() {
 		return sheet.getPaneInformation();
 	}
 
@@ -541,7 +546,7 @@ public class FilteredSheet implements Sheet {
 
 
 	public Comment getCellComment(int row, int column) {
-		return sheet.getCellComment(row, column);
+		return sheet.getCellComment(new CellAddress(row, column));
 	}
 
 
@@ -594,5 +599,120 @@ public class FilteredSheet implements Sheet {
 	public SheetConditionalFormatting getSheetConditionalFormatting() {
 		return sheet.getSheetConditionalFormatting();
 	}
+
+	@Override
+	public float getColumnWidthInPixels(int columnIndex) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int addMergedRegionUnsafe(CellRangeAddress region) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void validateMergedRegions() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeMergedRegions(Collection<Integer> indices) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<CellRangeAddress> getMergedRegions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isPrintRowAndColumnHeadings() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setPrintRowAndColumnHeadings(boolean show) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setZoom(int scale) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showInPane(int toprow, int leftcol) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Comment getCellComment(CellAddress ref) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<CellAddress, ? extends Comment> getCellComments() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Drawing<?> getDrawingPatriarch() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<? extends DataValidation> getDataValidations() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getColumnOutlineLevel(int columnIndex) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Hyperlink getHyperlink(int row, int column) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Hyperlink getHyperlink(CellAddress addr) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<? extends Hyperlink> getHyperlinkList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CellAddress getActiveCell() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setActiveCell(CellAddress address) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

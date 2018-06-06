@@ -19,7 +19,9 @@ import org.apache.poi.hssf.usermodel.HSSFPalette;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -79,7 +81,7 @@ public class StyleManagerHUtils extends StyleManagerUtils {
 	 */
 	private short poiBorderStyleFromBirt( String birtBorder, String width ) {
 		if( "none".equals(birtBorder) ) {
-			return CellStyle.BORDER_NONE;
+			return BorderStyle.NONE.getCode();
 		}
 		DimensionType dim = DimensionType.parserUnit( width );
 		double pxWidth = 3.0;
@@ -88,28 +90,28 @@ public class StyleManagerHUtils extends StyleManagerUtils {
 		}
 		if( "solid".equals(birtBorder) ) {
 			if( pxWidth < 2.9 ) {
-				return CellStyle.BORDER_THIN;
+				return BorderStyle.THIN.getCode();
 			} else if( pxWidth < 3.1 ) {
-				return CellStyle.BORDER_MEDIUM;
+				return BorderStyle.MEDIUM.getCode();
 			} else {
-				return CellStyle.BORDER_THICK;
+				return BorderStyle.THICK.getCode();
 			}
 		} else if( "dashed".equals(birtBorder) ) {
 			if( pxWidth < 2.9 ) {
-				return CellStyle.BORDER_DASHED;
+				return BorderStyle.DASHED.getCode();
 			} else {
-				return CellStyle.BORDER_MEDIUM_DASHED;
+				return BorderStyle.MEDIUM_DASHED.getCode();
 			}
 		} else if( "dotted".equals(birtBorder) ) {
-			return CellStyle.BORDER_DOTTED;
+			return BorderStyle.DOTTED.getCode();
 		} else if( "double".equals(birtBorder) ) {
-			return CellStyle.BORDER_DOUBLE;
+			return BorderStyle.DOUBLE.getCode();
 		} else if( "none".equals(birtBorder) ) {
-			return CellStyle.BORDER_NONE;
+			return BorderStyle.NONE.getCode();
 		}
 
 		log.debug( "Border style \"", birtBorder, "\" is not recognised" );
-		return CellStyle.BORDER_NONE;
+		return BorderStyle.NONE.getCode();
 	}
 	
 	/**
@@ -156,25 +158,25 @@ public class StyleManagerHUtils extends StyleManagerUtils {
 				short hBorderStyle = poiBorderStyleFromBirt(borderStyleString, widthString);
 				short colourIndex = getHColour((HSSFWorkbook)workbook, colourString);
 				if( colourIndex > 0 ) {
-					if(hBorderStyle != CellStyle.BORDER_NONE) {
+					if(hBorderStyle != BorderStyle.NONE.getCode()) {
 						switch( side ) {
 						case TOP:
-							hStyle.setBorderTop(hBorderStyle);
+							hStyle.setBorderTop(BorderStyle.valueOf(hBorderStyle));
 							hStyle.setTopBorderColor(colourIndex);
 							// log.debug( "Top border: " + xStyle.getBorderTop() + " / " + xStyle.getTopBorderXSSFColor().getARGBHex() );
 							break;
 						case LEFT:
-							hStyle.setBorderLeft(hBorderStyle);
+							hStyle.setBorderLeft(BorderStyle.valueOf(hBorderStyle));
 							hStyle.setLeftBorderColor(colourIndex);
 							// log.debug( "Left border: " + xStyle.getBorderLeft() + " / " + xStyle.getLeftBorderXSSFColor().getARGBHex() );
 							break;
 						case RIGHT:
-							hStyle.setBorderRight(hBorderStyle);
+							hStyle.setBorderRight(BorderStyle.valueOf(hBorderStyle));
 							hStyle.setRightBorderColor(colourIndex);
 							// log.debug( "Right border: " + xStyle.getBorderRight() + " / " + xStyle.getRightBorderXSSFColor().getARGBHex() );
 							break;
 						case BOTTOM:
-							hStyle.setBorderBottom(hBorderStyle);
+							hStyle.setBorderBottom(BorderStyle.valueOf(hBorderStyle));
 							hStyle.setBottomBorderColor(colourIndex);
 							// log.debug( "Bottom border: " + xStyle.getBorderBottom() + " / " + xStyle.getBottomBorderXSSFColor().getARGBHex() );
 							break;
@@ -215,7 +217,7 @@ public class StyleManagerHUtils extends StyleManagerUtils {
 			short colourIndex = getHColour((HSSFWorkbook)workbook, colour);
 			if( colourIndex > 0 ) {
 				cellStyle.setFillForegroundColor(colourIndex);
-				cellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
+				cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 			}
 		}
 	}

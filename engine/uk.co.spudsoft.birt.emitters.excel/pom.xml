@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
+	<!-- <parent>
 		<groupId>org.eclipse.birt</groupId>
 		<artifactId>org.eclipse.birt-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../../</relativePath>
-	</parent>
+	</parent> -->
 	<groupId>org.eclipse.birt</groupId>
 	<artifactId>uk.co.spudsoft.birt.emitters.excel</artifactId>
 	<version>4.5.0-SNAPSHOT</version>
-	<packaging>eclipse-plugin</packaging>
+	<packaging>jar</packaging>
+	
+	  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+	 <build>
+        <sourceDirectory>src</sourceDirectory>
+    
+    </build>
+	<dependencies>
+		<dependency>
+    		<groupId>org.apache.poi</groupId>
+    		<artifactId>poi</artifactId>
+    		<version>3.17</version>
+		</dependency>
+		<dependency>
+    		<groupId>org.apache.poi</groupId>
+    		<artifactId>poi-ooxml-schemas</artifactId>
+    		<version>3.17</version>
+		</dependency>
+		<dependency>
+    		<groupId>org.apache.poi</groupId>
+    		<artifactId>poi-ooxml</artifactId>
+    		<version>3.17</version>
+		</dependency>
+
+		<dependency>
+    <groupId>org.eclipse.birt.runtime</groupId>
+    <artifactId>org.eclipse.birt.runtime</artifactId>
+    <version>4.5.0</version>
+    <exclusions>
+    	<exclusion>
+    		<groupId>org.eclipse.birt.runtime</groupId>
+    		<artifactId>org.eclipse.osgi</artifactId>
+    	</exclusion>
+    	<exclusion>
+    		<groupId>org.eclipse.birt.runtime</groupId>
+    		<artifactId>org.eclipse.osgi.services</artifactId>
+    	</exclusion>
+    	<exclusion>
+    		<groupId>org.apache.poi</groupId>
+    		<artifactId>*</artifactId>
+    	</exclusion>
+    </exclusions>
+		</dependency>
+		<dependency>
+    <groupId>org.eclipse.tycho</groupId>
+    <artifactId>org.eclipse.osgi</artifactId>
+    <version>3.10.100.v20150529-1857</version>
+</dependency>
+		
+	</dependencies>
 </project>

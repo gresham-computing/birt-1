@@ -162,7 +162,7 @@ public class FontManager {
 		// Weight
 		short fontWeight = smu.poiFontWeightFromBirt(cleanupQuotes(birtStyle.getProperty( StyleConstants.STYLE_FONT_WEIGHT )));
 		if(fontWeight > 0) {
-			font.setBoldweight(fontWeight);
+			font.setBold(true);
 		}
 		// Style
 		String fontStyle = cleanupQuotes(birtStyle.getProperty( StyleConstants.STYLE_FONT_STYLE ) );

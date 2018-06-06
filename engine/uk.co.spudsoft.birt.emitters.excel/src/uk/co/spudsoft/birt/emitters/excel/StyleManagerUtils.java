@@ -31,7 +31,9 @@ import java.util.Locale;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.DataFormat;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.PrintSetup;
 import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
@@ -127,15 +129,15 @@ public abstract class StyleManagerUtils {
 	 */
 	public short poiAlignmentFromBirtAlignment(String alignment) {
 		if(CSSConstants.CSS_LEFT_VALUE.equals(alignment)) {
-			return CellStyle.ALIGN_LEFT;
+			return (short) HorizontalAlignment.LEFT.ordinal();
 		}
 		if(CSSConstants.CSS_RIGHT_VALUE.equals(alignment)) {
-			return CellStyle.ALIGN_RIGHT;
+			return (short) HorizontalAlignment.RIGHT.ordinal();
 		}
 		if(CSSConstants.CSS_CENTER_VALUE.equals(alignment)) {
-			return CellStyle.ALIGN_CENTER;
+			return (short) HorizontalAlignment.CENTER.ordinal();
 		}
-		return CellStyle.ALIGN_GENERAL;
+		return (short) HorizontalAlignment.GENERAL.ordinal();
 	}
 	
 	/**
@@ -223,9 +225,9 @@ public abstract class StyleManagerUtils {
 			return 0;
 		}
 		if("bold".equals(fontWeight)) {
-			return Font.BOLDWEIGHT_BOLD;
+			return 0x2bc;
 		}
-		return Font.BOLDWEIGHT_NORMAL;
+		return 0x190;
 	}
 	
 	/**
@@ -293,7 +295,7 @@ public abstract class StyleManagerUtils {
 		if( cellStyle == null ) {
 			return true;
 		}
-		if( cellStyle.getFillPattern() == CellStyle.NO_FILL ) {
+		if( cellStyle.getFillPattern() == FillPatternType.NO_FILL.getCode() ) {
 			return true;
 		}
 		return false;		
@@ -681,7 +683,7 @@ public abstract class StyleManagerUtils {
 	protected void addFontAttributes( AttributedString attrString, Font font, int startIdx, int endIdx) {
 		attrString.addAttribute(TextAttribute.FAMILY, font.getFontName(), startIdx, endIdx);
 		attrString.addAttribute(TextAttribute.SIZE, (float)font.getFontHeightInPoints(), startIdx, endIdx);
-        if (font.getBoldweight() == Font.BOLDWEIGHT_BOLD) attrString.addAttribute(TextAttribute.WEIGHT, TextAttribute.WEIGHT_BOLD, startIdx, endIdx);
+        if (font.getBold()) attrString.addAttribute(TextAttribute.WEIGHT, TextAttribute.WEIGHT_BOLD, startIdx, endIdx);
         if (font.getItalic() ) attrString.addAttribute(TextAttribute.POSTURE, TextAttribute.POSTURE_OBLIQUE, startIdx, endIdx);
         if (font.getUnderline() == Font.U_SINGLE ) attrString.addAttribute(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON, startIdx, endIdx);
 	}
