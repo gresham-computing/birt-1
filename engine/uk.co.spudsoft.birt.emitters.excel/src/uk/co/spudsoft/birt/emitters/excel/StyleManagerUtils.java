@@ -221,7 +221,7 @@ public abstract class StyleManagerUtils {
 	 * One of the Font.BOLDWEIGHT_* constants.
 	 */
 	public short poiFontWeightFromBirt(String fontWeight) {
-		if(fontWeight == null || "normal".equals(fontWeight)) {
+		if(fontWeight == null) {
 			return 0;
 		}
 		if("bold".equals(fontWeight)) {
