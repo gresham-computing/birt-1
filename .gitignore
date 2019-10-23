@@ -1,2 +1,5 @@
 bin/
 /.reviewboardrc
+.idea/
+build/
+*.iml
