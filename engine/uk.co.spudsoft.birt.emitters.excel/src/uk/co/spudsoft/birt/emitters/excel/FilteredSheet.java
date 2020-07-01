@@ -18,7 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.poi.hssf.util.PaneInformation;
+import org.apache.poi.ss.util.PaneInformation;
 import org.apache.poi.ss.usermodel.AutoFilter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellRange;
@@ -403,6 +403,10 @@ public class FilteredSheet implements Sheet {
 	public void shiftRows(int startRow, int endRow, int n,
 			boolean copyRowHeight, boolean resetOriginalRowHeight) {
 		sheet.shiftRows(startRow, endRow, n, copyRowHeight, resetOriginalRowHeight);
+	}
+
+	public void shiftColumns(int startColumn, int endColumn, int n) {
+		sheet.shiftColumns(startColumn, endColumn, n);
 	}
 
 

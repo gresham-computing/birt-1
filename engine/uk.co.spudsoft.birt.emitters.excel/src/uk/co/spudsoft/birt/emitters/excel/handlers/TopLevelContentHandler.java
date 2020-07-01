@@ -14,6 +14,7 @@
 package uk.co.spudsoft.birt.emitters.excel.handlers;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.eclipse.birt.core.exception.BirtException;
 import org.eclipse.birt.report.engine.content.IDataContent;
 import org.eclipse.birt.report.engine.content.IForeignContent;
@@ -43,7 +44,7 @@ public class TopLevelContentHandler extends CellContentHandler {
 		emitContent(state, text, text.getText(), ( ! "inline".equals( getStyleProperty(text, StyleConstants.STYLE_DISPLAY, "block") ) ) );
 
 		Cell currentCell = state.currentSheet.getRow(state.rowNum).createCell( 0 );
-		currentCell.setCellType(Cell.CELL_TYPE_BLANK);
+		currentCell.setCellType(CellType.BLANK);
 				
 		endCellContent(state, null, text, currentCell, null);
 
@@ -59,7 +60,7 @@ public class TopLevelContentHandler extends CellContentHandler {
 		emitContent(state, data, data.getValue(), ( ! "inline".equals( getStyleProperty(data, StyleConstants.STYLE_DISPLAY, "block") ) ) );
 
 		Cell currentCell = state.currentSheet.getRow(state.rowNum).createCell( 0 );
-		currentCell.setCellType(Cell.CELL_TYPE_BLANK);
+		currentCell.setCellType(CellType.BLANK);
 				
 		endCellContent(state, null, data, currentCell, null);
 
@@ -76,7 +77,7 @@ public class TopLevelContentHandler extends CellContentHandler {
 		emitContent(state,label,labelText, ( ! "inline".equals( getStyleProperty(label, StyleConstants.STYLE_DISPLAY, "block") ) ));
 
 		Cell currentCell = state.currentSheet.getRow(state.rowNum).createCell( 0 );
-		currentCell.setCellType(Cell.CELL_TYPE_BLANK);
+		currentCell.setCellType(CellType.BLANK);
 				
 		endCellContent(state, null, label, currentCell, null);
 
@@ -104,7 +105,7 @@ public class TopLevelContentHandler extends CellContentHandler {
 
 		recordImage(state, new Coordinate( state.rowNum, 0 ), image, true);
 		Cell currentCell = state.currentSheet.getRow(state.rowNum).createCell( 0 );
-		currentCell.setCellType(Cell.CELL_TYPE_BLANK);
+		currentCell.setCellType(CellType.BLANK);
 				
 		endCellContent(state, null, image, currentCell, null);
 
