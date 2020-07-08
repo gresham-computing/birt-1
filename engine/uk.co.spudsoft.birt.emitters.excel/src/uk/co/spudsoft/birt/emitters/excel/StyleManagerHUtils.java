@@ -37,6 +37,8 @@ import org.w3c.dom.css.CSSValue;
 
 import uk.co.spudsoft.birt.emitters.excel.framework.Logger;
 
+import static org.apache.poi.hssf.util.HSSFColor.HSSFColorPredefined;
+
 /**
  * StyleManagerHUtils is an extension of the StyleManagerUtils to provide HSSFWorkbook specific functionality.
  * @author Jim Talbut
@@ -229,7 +231,7 @@ public class StyleManagerHUtils extends StyleManagerUtils {
 		CSSValue bgColour = birtStyle.getProperty( StyleConstants.STYLE_BACKGROUND_COLOR );
 		int bgRgb[] = parseColour( bgColour == null ? null : bgColour.getCssText(), "white" );
 
-		short fgRgb[] = HSSFColor.BLACK.triplet;
+		short fgRgb[] = HSSFColor.HSSFColorPredefined.BLACK.getTriplet();
 		if( ( font != null ) && ( font.getColor() != Short.MAX_VALUE ) ) {
 			fgRgb = palette.getColor(font.getColor()).getTriplet();
 		}

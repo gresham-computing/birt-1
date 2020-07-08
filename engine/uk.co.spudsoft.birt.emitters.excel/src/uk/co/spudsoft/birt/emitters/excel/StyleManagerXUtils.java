@@ -38,6 +38,8 @@ import org.w3c.dom.css.CSSValue;
 
 import uk.co.spudsoft.birt.emitters.excel.framework.Logger;
 
+import static org.apache.poi.util.Units.EMU_PER_POINT;
+
 /**
  * StyleManagerXUtils is an extension of the StyleManagerUtils to provide XSSFWorkbook specific functionality.
  * @author Jim Talbut
@@ -241,7 +243,7 @@ public class StyleManagerXUtils extends StyleManagerUtils {
 	
 	@Override
 	public int anchorDyFromPoints( float height, float rowHeight ) {
-		return (int)( height * XSSFShape.EMU_PER_POINT );
+		return (int)( height * EMU_PER_POINT );
 	}
 
 	@Override

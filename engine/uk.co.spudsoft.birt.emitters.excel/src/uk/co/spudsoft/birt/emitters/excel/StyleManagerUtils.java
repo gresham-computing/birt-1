@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -288,14 +289,14 @@ public abstract class StyleManagerUtils {
 	 * true is the cell is empty and has no style or has no background fill.
 	 */
 	public static boolean cellIsEmpty(Cell cell) {
-		if( cell.getCellType() != Cell.CELL_TYPE_BLANK ) {
+		if( cell.getCellType() != CellType.BLANK ) {
 			return false;
 		}
 		CellStyle cellStyle = cell.getCellStyle();
 		if( cellStyle == null ) {
 			return true;
 		}
-		if( cellStyle.getFillPattern() == FillPatternType.NO_FILL.getCode() ) {
+		if( cellStyle.getFillPattern() == FillPatternType.NO_FILL ) {
 			return true;
 		}
 		return false;		
