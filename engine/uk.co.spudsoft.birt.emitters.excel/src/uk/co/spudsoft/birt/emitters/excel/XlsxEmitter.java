@@ -19,7 +19,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.eclipse.birt.report.engine.content.IContent;
+import uk.co.spudsoft.birt.emitters.excel.framework.Logger;
 
 /**
  * XlsxEmitter is the leaf class for implementing the ExcelEmitter with XSSFWorkbook.
@@ -40,6 +43,12 @@ public class XlsxEmitter extends ExcelEmitter {
 	}
 
 	protected Workbook createWorkbook() {
+		if( EmitterServices.booleanOption( renderOptions, (IContent) null, SXSSF_WORKBOOK, false ) )
+		{
+			log = new Logger(this.getClass().getPackage().getName());
+			log.debug("XlsxEmitter - creating workbook using SXSSFWorkbook");
+			return new SXSSFWorkbook(10);
+		}
 		return new XSSFWorkbook();
 	}
 	

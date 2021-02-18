@@ -84,7 +84,9 @@ public abstract class ExcelEmitter implements IContentEmitter {
 	public static final String DISPLAYZEROS_PROP = "ExcelEmitter.DisplayZeros";
 
 	public static final String TEMPLATE_FILE = "ExcelEmitter.TemplateFile";
-	
+
+	public static final String SXSSF_WORKBOOK = "ExcelEmitter.SXSSFWorkbook";
+
 	/**
 	 * Logger.
 	 */
@@ -116,7 +118,7 @@ public abstract class ExcelEmitter implements IContentEmitter {
 	 */
 	private HandlerState handlerState;
 
-	private IRenderOption renderOptions;
+	protected IRenderOption renderOptions;
 	/**
 	 * The last page seen, cached so it can be used to call endPage
 	 * 
