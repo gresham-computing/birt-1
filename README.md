@@ -36,7 +36,7 @@ It is quick to make a change in BIRT and get it into a running CTC reports PU.
 Once happy with the changes they can be uploaded to Nexus. This is done by modifying the latest runtime jar and birt war and uploading with a new version. 
 
 1. Download the latest release version of these artifacts from the `thirdparty-maven-releases` Nexus repo
-1. Rename the jar and war to the next snapshot
+1. Rename the jar and war to the next snapshot. The 4.5.0 at the start of the version should remain as we are patching this version
 1. Similar to the testing steps above, copy the modified classes into the runtime jar
 1. Replace the modified runtime jar within the birt war `/WEB-INF/lib/` directory.
 1. The 2 artifacts can be uploaded in either order. The properties you need to think about are:
