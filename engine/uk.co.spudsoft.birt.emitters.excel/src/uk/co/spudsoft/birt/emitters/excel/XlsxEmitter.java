@@ -42,13 +42,9 @@ public class XlsxEmitter extends ExcelEmitter {
 	}
 
 	protected Workbook createWorkbook(final IReportContent report) {
-		System.out.println(renderOptions.getOptions());
-		System.out.println(renderOptions.getOption(SXSSF_WORKBOOK));
-		System.out.println(report.getDesign().getUserProperties());
 		if( EmitterServices.booleanOption( renderOptions, report, SXSSF_WORKBOOK, false ) )
 		{
 			log.debug("XlsxEmitter - creating workbook using SXSSFWorkbook");
-			System.out.println("XlsxEmitter - creating workbook using SXSSFWorkbook");
 			return new SXSSFWorkbook(10);
 		}
 		return new XSSFWorkbook();
