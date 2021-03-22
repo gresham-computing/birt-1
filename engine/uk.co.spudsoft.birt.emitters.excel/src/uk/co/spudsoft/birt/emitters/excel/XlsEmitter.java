@@ -20,6 +20,7 @@ import java.io.InputStream;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.eclipse.birt.report.engine.content.IReportContent;
 
 /**
  * XlsEmitter is the leaf class for implementing the ExcelEmitter with HSSFWorkbook.
@@ -39,7 +40,7 @@ public class XlsEmitter extends ExcelEmitter {
 		return "xls";
 	}
 
-	protected Workbook createWorkbook() {
+	protected Workbook createWorkbook(final IReportContent report) {
 		return new HSSFWorkbook();
 	}
 	
